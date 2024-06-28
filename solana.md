@@ -30,6 +30,10 @@
 (building: see Anchor)
 `solana program deploy` - deploys program
 
+#### What if we want to program ID with some beginning?
+
+`solana-keygen grind --starts-with a23:1` - searching for 1 (`:1`) instance of address beginning with `a23`
+
 ### Calculate rent of program
 `du -k target/deploy/<program-name>.so` - shows fiels sizes in KB -> calculate bytes, let's call it n
 `solana rent n`
