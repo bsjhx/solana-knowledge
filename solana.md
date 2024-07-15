@@ -30,6 +30,37 @@
 (building: see Anchor)
 `solana program deploy` - deploys program
 
+### Recovering SOl after failed deploy
+
+In terminal we got:
+```
+====================================================================================
+Recover the intermediate account's ephemeral keypair file with
+`solana-keygen recover` and the following 12-word seed phrase:
+====================================================================================
+frozen cabbage direct dance relax honey cover captain salute isolate diagram nuclear
+====================================================================================
+To resume a deploy, pass the recovered keypair as the
+[BUFFER_SIGNER] to `solana program deploy` or `solana program write-buffer'.
+Or to recover the account's lamports, pass it as the
+[BUFFER_ACCOUNT_ADDRESS] argument to `solana program close`.
+====================================================================================
+Error: 246 write transactions failed
+```
+
+Copy seed phrase `frozen cabbage ...` and type:
+
+``` bash
+solana-keygen recover -o ./recover.json
+# follow instructions and then:
+solana program close recover.json
+# you should see:
+
+Buffer Address                               | Authority                                    | Balance
+FSzKw7EMMQLaFC6fR25eQnX8cDMab5sFkzH46tWK7nE5 | 7bTKsQ1jHrstRLwC3e41hbWU34b1rv9Fpw521tAKhgHj | 2.6426076 SOL
+
+```
+
 #### What if we want to program ID with some beginning?
 
 `solana-keygen grind --starts-with a23:1` - searching for 1 (`:1`) instance of address beginning with `a23`
